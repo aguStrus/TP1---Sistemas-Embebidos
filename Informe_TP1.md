@@ -8,9 +8,13 @@ Villacampa Horta Augusto - 102602
 
 En este trabajo se pretende aprender sobre la utilización de diagramas de estados y su codificación con la extensión de Yakindu.
 Para esto se requiere:
+
 -Poseer una placa de desarrollo EDU-CIAA
+
 -Haber instalado la IDE Eclipse
+
 -Haber instalado y licenciado la extensión de Yakindu para Eclipse
+
 -Haber agregado la carpeta firmware_v3 que contiene todos los archivos necesarios
 
 Teniendo todo esto es necesario configurar la IDE Eclipse para la placa de desarrollo, para poder compilar, cargar y depurar los programas.
