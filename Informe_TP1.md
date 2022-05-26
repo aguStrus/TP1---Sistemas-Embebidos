@@ -20,13 +20,23 @@ Para esto se requiere:
 Teniendo todo esto es necesario configurar la IDE Eclipse para la placa de desarrollo, para poder compilar, cargar y depurar los programas.
 En este paso es importante aclarar que se requieren varias herramientas y procedimientos para lograr que todo funcione correctamente ya que no existe un instalador que sirva de forma universal para todos los equipos. Esto lleva a que lo mas común sea encontrarse con muchos problemas y errores a lo largo de la instalación aún siguiendo el instructivo provisto. Además, a la hora de instalar la extensión de Yakindu fue necesario usar una versión antigua por problemas de compatibilidad.
 
-Para probar que todo funcione se carga en la placa alguno de los programas de ejemplo con diagramas de estado que se encuentran en la carpeta de firmware_v3. En este punto se encontraron también algunos problemas. Lo primero es que la placa debe estar conectada siempre al mismo puerto, que previamente tuvo que ser configurado manualmente con Zadig, incluido en el launcher. Además se encontró un problema a la hora de cargar el programa en la placa por un error con libusb_open(). Para solucionarlo se tiene que usar el depurador para cargar el programa y luego reiniciar la placa cada vez que se carga un nuevo programa. Además el depurador también tuvo que ser configurado previamente para funcionar con esta placa específica y se le debe indicar cada vez el programa que debe cargar.
+Para probar que todo funcione se carga en la placa alguno de los programas de ejemplo con diagramas de estado que se encuentran en la carpeta de firmware_v3. Para esto primero hay que generar los archivos necesarios a partir del diagrama de estados, usando el archivo .sgen. En este punto se encontraron también algunos problemas. Lo primero es que la placa debe estar conectada siempre al mismo puerto, que previamente tuvo que ser configurado manualmente con Zadig, incluido en el launcher. Además se encontró un problema a la hora de cargar el programa en la placa por un error con libusb_open(). Para solucionarlo se tiene que usar el depurador para cargar el programa y luego reiniciar la placa cada vez que se carga un nuevo programa. Además el depurador también tuvo que ser configurado previamente para funcionar con esta placa específica y se le debe indicar cada vez el programa que debe cargar.
 
 Habiendo verificado que se logra cargar programas en la placa se pueden probar y analizar los distintos ejemplos incluidos en firmware_v3 sobre Statecharts con Yakindu.
 
 ## **Ejemplos**
 
 ### **1) 1_toggle**
+
+En la siguiente figura se puede ver el diagrama de estados de este ejemplo:
+AGREGAR FOTO
+
+Este es el ejemplo más simple, en donde cada ciclo de la máquina de estados dispara un evento que cambia el estado de un LED. Dada la alta frecuencia en la ejecución de los ciclos de la máquina no puede apreciarse este cambio, y se ve siempre al LED encendido. Para ver estos cambios lo que se puede hacer es entrar en modo depuración con un breackpoint antes de hacer el cambio de estado en el LED, y realizar cada ciclo de la máquina manualmente.
+
+El código principal del programa se encuentra en el archivo main.c, y es en este en donde se realizarán las iteraciones de la máquina de estados. Este archivo incluye Toggle.h, que tiene las definiciones de las funciones incluidas en Toggle.c. Estos 2 últimos archivos son los generados a partir del diagrama de estados, por lo que es importante reemplazarlos cada vez que se hagan cambios en el diagrama. Continuando con el archivo main.c, y dentro de la función main propiamente dicha, lo primero que hace es inicializar la placa con boardConfig(), incluida en sapi_board.h. Luego configura la frecuencia del contador de tiempo en 1000 ticks por segundo con tickConfig(). Después se usa tickCallbackSet() para definir la rutina de interrupción a utilizar, en este caso es myTickHook(), que solo activa un flag. Para terminar la configuración se inicializa el vector de estados en cero y se limpian los eventos con toggle_init() y finalmente se entra en la máquina de estados con toggle_enter()
+
+Ahora se entra en la parte del loop del programa con un while(1). Dentro de este ciclo infinito lo primero que se hace es dormir al microcontrolador con \_\_WFI() a la
+
 ### **2) 2_blink**
 ### **3) 3_idleBlink**
 ### **4) 4_buttons**
