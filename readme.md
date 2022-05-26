@@ -20,7 +20,7 @@ Para esto se requiere:
 -Haber agregado la carpeta firmware_v3 que contiene todos los archivos necesarios
 
 Teniendo todo esto es necesario configurar la IDE Eclipse para la placa de desarrollo, para poder compilar, cargar y depurar los programas.
-En este paso es importante aclarar que se requieren varias herramientas y procedimientos para lograr que todo funcione correctamente ya que no existe un instalador que sirva de forma universal para todos los equipos. Esto lleva a que lo mas común sea encontrarse con muchos problemas y errores a lo largo de la instalación aún siguiendo el instructivo provisto. Además, a la hora de instalar la extensión de Yakindu fue necesario usar una versión antigua por problemas de compatibilidad.
+En este paso es importante aclarar que se requieren varias herramientas y procedimientos para lograr que todo funcione correctamente ya queno existe un instalador que sirva de forma universal para todos los equipos. Esto lleva a que lo mas común sea encontrarse con muchos problemas y errores a lo largo de la instalación aún siguiendo el instructivo provisto. Además, a la hora de instalar la extensión de Yakindu fue necesario usar una versión antigua por problemas de compatibilidad.
 
 Para probar que todo funcione se carga en la placa alguno de los programas de ejemplo con diagramas de estado que se encuentran en la carpeta de firmware_v3. Para esto primero hay que generar los archivos necesarios a partir del diagrama de estados, usando el archivo .sgen. En este punto se encontraron también algunos problemas. Lo primero es que la placa debe estar conectada siempre al mismo puerto, que previamente tuvo que ser configurado manualmente con Zadig, incluido en el launcher. Además se encontró un problema a la hora de cargar el programa en la placa por un error con libusb_open(). Para solucionarlo se tiene que usar el depurador para cargar el programa y luego reiniciar la placa cada vez que se carga un nuevo programa. Además el depurador también tuvo que ser configurado previamente para funcionar con esta placa específica y se le debe indicar cada vez el programa que debe cargar.
 
@@ -41,7 +41,10 @@ Ahora se entra en la parte del loop del programa con un while(1). Dentro de este
 
 Dentro de la función que ejecuta un ciclo de la máquina primero se limpian los eventos salientes (en este caso esta función no hace nada) y luego se ejecuta un ciclo for que evalúa los elementos del vector de estados con un switch y acúa según se programe cada uno. Finalmente limpia los eventos entrantes y termina el ciclo.
 
-### **2) 2_blink**
+### **2) 2_Myblink**
+
+Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modific� el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la funci�n opLED, que se ejecuta siempre que se este en el estado "precionado". Al dejar de precionar el boton, se sale de este estado y el LED deja de titilar.
+
 ### **3) 3_idleBlink**
 ### **4) 4_buttons**
 ### **5) 5_application**
