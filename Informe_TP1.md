@@ -3,6 +3,7 @@
 ### **Integrantes:**
 
 Villacampa Horta Augusto - 102602
+
 Strusberg Agustin Javier - 102809
 
 ## **Instalación y pasos previos**
