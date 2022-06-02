@@ -48,6 +48,6 @@ Este programa es una modificacion del codigo buttons para hacer titilar a un led
 ### **3) 3_idleBlink**
 hola augusto
 ### **4) 4_buttons**
-holi
+holA
 ### **5) 5_application**
 ### **6) Proyecto nuestro**
