@@ -32,7 +32,7 @@ Habiendo verificado que se logra cargar programas en la placa se pueden probar y
 
 En la siguiente figura se puede ver el diagrama de estados de este ejemplo:
 
-![Stetechart del Toggle](link)
+![Stetechart del Toggle](Statechart 1 - Toggle/1_toggle/Statechart_toogle.png)
 
 Este es el ejemplo más simple, en donde cada ciclo de la máquina de estados dispara un evento que cambia el estado de un LED. Dada la alta frecuencia en la ejecución de los ciclos de la máquina no puede apreciarse este cambio, y se ve siempre al LED encendido. Para ver estos cambios lo que se puede hacer es entrar en modo depuración con un breackpoint antes de hacer el cambio de estado en el LED, y realizar cada ciclo de la máquina manualmente.
 
