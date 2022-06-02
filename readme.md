@@ -53,10 +53,13 @@ Este programa es una modificacion del codigo buttons para hacer titilar a un led
 En este caso la máquina comienza en el estado NO_OPRIMIDO. Cuando se presiona el pulsador se pasa al estado DEBOUNCE, se espera 100ms y luego se entra al estado VALIDACION. Si luego de ese tiempo el pulsador no está presionado se vuelve al estado inicial, de otra forma se sigue al estado PRESIONADO y se ejecutan las funciones correspondientes. Primero se ejecuta valueof() que devuelve el estado de los botones. Luego entra en un loop always que ejecuta opLED(). Esta función realiza un toggle del LED y espera 500ms. Luego vuelve a ejecutarse por estar en un ciclo always. La forma de salir es dejar de presionar el pulsador, que es el evento que lleva a la máquina al estado NO_OPRIMIDO nuevamente.
 
 ### **3) 3_idleBlink**
+En la siguiente figura se muestra la máquina de estados de este ejemplo:
+
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
 
+En este caso la máquina comienza en el estado REPOSO, que ejecuta la función opLED(LED3, LED_OFF), es decir que apaga un LED si este estuviera encendido. Luego de 3000ms se dispara un evento que lleva a un estado anidado llamado TITILA, que comienza en el estado APAGADO y ejecuta la misma función de apagado del LED. Pasados 250ms se pasa al estado ENCENDIDO que enciende el LED, y vuelve al estado anterior luego de 500ms, apagando el LED. Esto sucede hasta que pasados 5000ms se sale del estado anidado y se apaga el LED.
+
 ### **4) 4_buttons**
-En este proyecto se usa para 
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
 
 ### **5) 5_application**
