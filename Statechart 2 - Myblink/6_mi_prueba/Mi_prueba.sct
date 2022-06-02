@@ -6,7 +6,7 @@
         <outgoingTransitions xmi:id="_ECq5xkfOEeeJU45vckolSA" specification="after 100 ms" target="_ECxAOUfOEeeJU45vckolSA"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_ECq5y0fOEeeJU45vckolSA" specification="" name="NO_OPRIMIDO" incomingTransitions="_ECxAOEfOEeeJU45vckolSA _ECxAP0fOEeeJU45vckolSA _ECxAM0fOEeeJU45vckolSA">
-        <outgoingTransitions xmi:id="_ECxAIUfOEeeJU45vckolSA" specification="evTECXNoOprimido" target="_ECq5xEfOEeeJU45vckolSA"/>
+        <outgoingTransitions xmi:id="_ECxAIUfOEeeJU45vckolSA" specification="evTECXOprimido" target="_ECq5xEfOEeeJU45vckolSA"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_ECxAJUfOEeeJU45vckolSA" specification="entry / viTecla = valueof (evTECXOprimido)&#xD;&#xA;always / opLED(LED3)&#xD;&#xA;" name="PRESIONADO" incomingTransitions="_ECxAO0fOEeeJU45vckolSA">
         <outgoingTransitions xmi:id="_ECxAM0fOEeeJU45vckolSA" specification="evTECXNoOprimido" target="_ECq5y0fOEeeJU45vckolSA"/>
