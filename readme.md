@@ -46,7 +46,7 @@ Dentro de la función que ejecuta un ciclo de la máquina primero se limpian los
 Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar.
 
 ### **3) 3_idleBlink**
-hola augusto
+
 ### **4) 4_buttons**
 HOLA
 ### **5) 5_application**
