@@ -52,6 +52,7 @@ Este programa es una modificacion del codigo buttons para hacer titilar a un led
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
 
 ### **4) 4_buttons**
+En este proyecto se leen los estados de los botones y se guarda que boton se preciona.
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
 
 ### **5) 5_application**
