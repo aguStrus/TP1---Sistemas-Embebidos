@@ -42,6 +42,8 @@ Ahora se entra en la parte del loop del programa con un while(1). Dentro de este
 
 Dentro de la función que ejecuta un ciclo de la máquina primero se limpian los eventos salientes (en este caso esta función no hace nada) y luego se ejecuta un ciclo for que evalúa los elementos del vector de estados con un switch y actúa según se programe cada uno. Finalmente limpia los eventos entrantes y termina el ciclo.
 
+En esta máquina de estados lo que sucede en cada ciclo es que ante el evento evTick la máquina sale y entra al mismo estado, ejecutando la función opLED() cada vez que entra al estado. Esta función es la que se encarga de realizar el toggle.
+
 ### **2) 2_Myblink**
 
 Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar.
