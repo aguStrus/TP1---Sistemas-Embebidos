@@ -56,6 +56,7 @@ En este caso la máquina comienza en el estado NO_OPRIMIDO. Cuando se presiona e
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
 
 ### **4) 4_buttons**
+En este proyecto se usa para 
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
 
 ### **5) 5_application**
