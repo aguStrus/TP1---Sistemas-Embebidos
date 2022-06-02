@@ -46,9 +46,11 @@ En esta máquina de estados lo que sucede en cada ciclo es que ante el evento ev
 
 ### **2) 2_Myblink**
 
-Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar.
+Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar. En la siguiente figura se puede ver el Statechart en este caso:
 
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%202%20-%20Myblink/6_mi_prueba/Statechart_myblink.png)
+
+En este caso la máquina comienza en el estado NO_OPRIMIDO. Cuando se presiona el pulsador se pasa al estado DEBOUNCE, se espera 100ms y luego se entra al estado VALIDACION. Si luego de ese tiempo el pulsador no está presionado se vuelve al estado inicial, de otra forma se sigue al estado PRESIONADO y se ejecutan las funciones correspondientes. Primero se ejecuta valueof() que devuelve el estado de los botones. Luego entra en un loop always que ejecuta opLED(). Esta función realiza un toggle del LED y espera 500ms. Luego vuelve a ejecutarse por estar en un ciclo always. La forma de salir es dejar de presionar el pulsador, que es el evento que lleva a la máquina al estado NO_OPRIMIDO nuevamente.
 
 ### **3) 3_idleBlink**
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
