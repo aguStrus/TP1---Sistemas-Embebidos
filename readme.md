@@ -46,9 +46,15 @@ Dentro de la función que ejecuta un ciclo de la máquina primero se limpian los
 
 Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar.
 
+![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%202%20-%20Myblink/6_mi_prueba/Statechart_myblink.png)
+
 ### **3) 3_idleBlink**
+![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
 
 ### **4) 4_buttons**
-HOLA
+![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
+
 ### **5) 5_application**
+![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%205%20-%20application/5_application/Statechart_aplication.png)
+
 ### **6) Proyecto nuestro**
