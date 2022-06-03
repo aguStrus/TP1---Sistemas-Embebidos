@@ -38,24 +38,42 @@ Este es el ejemplo más simple, en donde cada ciclo de la máquina de estados di
 
 El código principal del programa se encuentra en el archivo main.c, y es en este en donde se realizarán las iteraciones de la máquina de estados. Este archivo incluye Toggle.h, que tiene las definiciones de las funciones incluidas en Toggle.c. Estos 2 últimos archivos son los generados a partir del diagrama de estados, por lo que es importante reemplazarlos cada vez que se hagan cambios en el diagrama. Continuando con el archivo main.c, y dentro de la función main propiamente dicha, lo primero que hace es inicializar la placa con boardConfig(), incluida en sapi_board.h. Luego configura la frecuencia del contador de tiempo en 1000 ticks por segundo con tickConfig(), de sapi_tick.c. Después se usa tickCallbackSet(), también de sapi_tick.c para definir la rutina de interrupción a utilizar, en este caso es myTickHook(), definida más arriba en el código, que solo activa un flag. Para terminar la configuración se inicializa el vector de estados en cero y se limpian los eventos con toggle_init() y finalmente se entra en la máquina de estados con toggle_enter(), ambas incluidas en Toggle.c.
 
-Ahora se entra en la parte del loop del programa con un while(1). Dentro de este ciclo infinito lo primero que se hace es dormir al microcontrolador con \_\_WFI() a la espera de una interrupción, que este caso se da por tiempo, 1000 veces por segundo. Cuando se detecta una interrupción primero se evalúa qué flag se encuantra activo. En este caso solo puede ser el de tiempo, y cuando se valida que se trata de este flag se ejecuta la rutina deseada. En este caso lo primero es desactivar el flag, luego activar el evento correspondiente para la máquina de estados con toggleIface_raise_evTick() y finalmente se corre un ciclo de la máquina con toggle_runCycle(), que actuará según los eventos que se hayan activado. Terminado el ciclo el microcontrolador vuelve a dormir a la espera de la siguiente interrupción. Las últimas 2 funciones usadas se encuentran en Toggle.c.
+Ahora se entra en la parte del loop del programa con un while(1). Dentro de este ciclo infinito lo primero que se hace es dormir al microcontrolador con \_\_WFI() a la espera de una interrupción, que en este caso se da por tiempo, 1000 veces por segundo. Cuando se detecta una interrupción primero se evalúa qué flag se encuantra activo. En este caso solo puede ser el de tiempo, y cuando se valida que se trata de este flag se ejecuta la rutina deseada. En este caso lo primero es desactivar el flag, luego activar el evento correspondiente para la máquina de estados con toggleIface_raise_evTick() y finalmente se corre un ciclo de la máquina con toggle_runCycle(), que actuará según los eventos que se hayan activado. Terminado el ciclo el microcontrolador vuelve a dormir a la espera de la siguiente interrupción. Las últimas 2 funciones usadas se encuentran en Toggle.c.
 
 Dentro de la función que ejecuta un ciclo de la máquina primero se limpian los eventos salientes (en este caso esta función no hace nada) y luego se ejecuta un ciclo for que evalúa los elementos del vector de estados con un switch y actúa según se programe cada uno. Finalmente limpia los eventos entrantes y termina el ciclo.
 
+En esta máquina de estados lo que sucede en cada ciclo es que ante el evento evTick la máquina sale y entra al mismo estado, ejecutando la función opLED() cada vez que entra al estado. Esta función es la que se encarga de realizar el toggle.
+
 ### **2) 2_Myblink**
 
-Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar.
+Este programa es una modificacion del codigo buttons para hacer titilar a un led. Se modificó el statechart para que si se mantiene precionado el boton, el led parpadee en vez de mantenerse prendido. Esto se hizo modificando la función opLED, que se ejecuta siempre que se este en el estado "presionado". Al dejar de presionar el boton, se sale de este estado y el LED deja de titilar. En la siguiente figura se puede ver el Statechart en este caso:
 
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%202%20-%20Myblink/6_mi_prueba/Statechart_myblink.png)
 
+En este caso la máquina comienza en el estado NO_OPRIMIDO. Cuando se presiona el pulsador se pasa al estado DEBOUNCE, se espera 100ms y luego se entra al estado VALIDACION. Si luego de ese tiempo el pulsador no está presionado se vuelve al estado inicial, de otra forma se sigue al estado PRESIONADO y se ejecutan las funciones correspondientes. Primero se ejecuta valueof() que devuelve el estado de los botones. Luego entra en un loop always que ejecuta opLED(). Esta función realiza un toggle del LED y espera 500ms. Luego vuelve a ejecutarse por estar en un ciclo always. La forma de salir es dejar de presionar el pulsador, que es el evento que lleva a la máquina al estado NO_OPRIMIDO nuevamente.
+
 ### **3) 3_idleBlink**
+En la siguiente figura se muestra la máquina de estados de este ejemplo:
+
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%203%20-%20idleBlink/3_idleBlink/Statechart_idleblink.png)
+
+En este caso la máquina comienza en el estado REPOSO, que ejecuta la función opLED(LED3, LED_OFF), es decir que apaga un LED si este estuviera encendido. Luego de 3000ms se dispara un evento que lleva a un estado anidado llamado TITILA, que comienza en el estado APAGADO y ejecuta la misma función de apagado del LED. Pasados 250ms se pasa al estado ENCENDIDO que enciende el LED, y vuelve al estado anterior luego de 500ms, apagando el LED. Esto sucede hasta que pasados 5000ms se sale del estado anidado y se apaga el LED.
 
 ### **4) 4_buttons**
 En este proyecto se leen los estados de los botones y se guarda que boton se preciona.
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
 
 ### **5) 5_application**
+En la siguiente figura se muestra la máquina de estados de este ejemplo.
+
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%205%20-%20application/5_application/Statechart_aplication.png)
+
+Esta es la máquina de estados más compleja, ya que tiene 3 máquinas que funcionan en paralelo. La primera comienza en el estado NO_OPRIMIDO, que no ejecuta nada. Lo mismo sucede con la segunda que empieza en el estado ESPERA, que tampoco ejecuta nada. La tercera comienza en REPOSO que ejecuta la función opLED() para apagar el LED. 
+
+La única manera de modificar los estados es oprimir un botón, que disparará un evento en la primera máquina de estados llevándola al estado DEBOUNCE y luego VALIDACION, de la misma manera que en los ejemplos 2 y 4. Cuando llega al estado OPRIMIDO levanta el evento siTECXOK y luego guarda el estado de los pulsadores con valueof(). El evento siTECXOK sirve como disparador de un cambio de estado en la segunda máquina. Este evento funciona en realidad como 4 eventos que se disparan por prioridad. En cada uno lo primero que se hace es evaluar el estado de los botones para saber cuál se preiosnó, con lo que solo ejecutará el código correspondiente al botón presionado.
+
+En el caso de presionar TEC1 ejecuta la función opLED() 3 veces apagando los 3 LEDs, y luego levanta el evento siNoTitilarLED, para la tercera máquina de estados. En caso de presionar TEC2 o TEC3 se ejecutará opLED() para encender LED1 o LED2 respectivamente. Si se presiona TEC4 se levanta el estado siTitilarLED para la tercera máquina de estados. Luego de terminar cualquiera de estas ejecuciones la segunda máquina de estados vuelve al estado ESPERAR.
+
+La tercera máquina de estados solo puede salir de RESPOSO ante el evento siTitilarLED, que lo lleva a un estado anidado llamado TITILA. Este estado anidado funciona igual que en el ejemplo 3, con la diferencia que la forma de salir es ante el evento siNoTitilarLED.
 
 ### **6) Proyecto nuestro**
