@@ -63,6 +63,16 @@ En este caso la máquina comienza en el estado REPOSO, que ejecuta la función o
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
 
 ### **5) 5_application**
+En la siguiente figura se muestra la máquina de estados de este ejemplo.
+
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%205%20-%20application/5_application/Statechart_aplication.png)
+
+Esta es la máquina de estados más compleja, ya que tiene 3 máquinas que funcionan en paralelo. La primera comienza en el estado NO_OPRIMIDO, que no ejecuta nada. Lo mismo sucede con la segunda que empieza en el estado ESPERA, que tampoco ejecuta nada. La tercera comienza en REPOSO que ejecuta la función opLED() para apagar el LED. 
+
+La única manera de modificar los estados es oprimir un botón, que disparará un evento en la primera máquina de estados llevándola al estado DEBOUNCE y luego VALIDACION, de la misma manera que en los ejemplos 2 y 4. Cuando llega al estado OPRIMIDO levanta el evento siTECXOK y luego guarda el estado de los pulsadores con valueof(). El evento siTECXOK sirve como disparador de un cambio de estado en la segunda máquina. Este evento funciona en realidad como 4 eventos que se disparan por prioridad. En cada uno lo primero que se hace es evaluar el estado de los botones para saber cuál se preiosnó, con lo que solo ejecutará el código correspondiente al botón presionado.
+
+En el caso de presionar TEC1 ejecuta la función opLED() 3 veces apagando los 3 LEDs, y luego levanta el evento siNoTitilarLED, para la tercera máquina de estados. En caso de presionar TEC2 o TEC3 se ejecutará opLED() para encender LED1 o LED2 respectivamente. Si se presiona TEC4 se levanta el estado siTitilarLED para la tercera máquina de estados. Luego de terminar cualquiera de estas ejecuciones la segunda máquina de estados vuelve al estado ESPERAR.
+
+La tercera máquina de estados solo puede salir de RESPOSO ante el evento siTitilarLED, que lo lleva a un estado anidado llamado TITILA. Este estado anidado funciona igual que en el ejemplo 3, con la diferencia que la forma de salir es ante el evento siNoTitilarLED.
 
 ### **6) Proyecto nuestro**
