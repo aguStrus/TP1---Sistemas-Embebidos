@@ -60,7 +60,11 @@ En la siguiente figura se muestra la m√°quina de estados de este ejemplo:
 En este caso la m√°quina comienza en el estado REPOSO, que ejecuta la funci√≥n opLED(LED3, LED_OFF), es decir que apaga un LED si este estuviera encendido. Luego de 3000ms se dispara un evento que lleva a un estado anidado llamado TITILA, que comienza en el estado APAGADO y ejecuta la misma funci√≥n de apagado del LED. Pasados 250ms se pasa al estado ENCENDIDO que enciende el LED, y vuelve al estado anterior luego de 500ms, apagando el LED. Esto sucede hasta que pasados 5000ms se sale del estado anidado y se apaga el LED.
 
 ### **4) 4_buttons**
+En este proyecto se usa para leer el estado de los botones. Su diagrama de estados es el siguiente. 
+
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%204%20-%20buttons/4_buttons/Statechart_buttons.png)
+
+Al iniciar, se espera en el estado NO_OPRIMIDO. Cuando se presiona un boton, se levanta el evento evTECXOprimido indicando de que hay un boton presionado, se mueve al estado DEBOUNCE y luego se espera un tiempo. Luego de ese tiempo se mueve al estado VALIDACI”N para preguntar si sigue el mismo evento levantado. En caso de no haber un boton presionado, el evento evTECXNoOprimido estar· en alto y se volvera al estado inicial. Si el evento evTECXOprimido sigue levantado se acepta que se presionÛ un boton, se mueve al estado OPRIMIDO y se cambia el estado del LED3 una vez. Luego se permanece en este estado hasta que no haya un boton presionado y se levante el evento evTECXNoOprimido, donde se vuelve al estado inicial.
 
 ### **5) 5_application**
 ![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/6a17ae763e51efb54b4839195d13bad011812b2f/Statechart%205%20-%20application/5_application/Statechart_aplication.png)
