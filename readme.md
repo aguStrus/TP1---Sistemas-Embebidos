@@ -83,7 +83,7 @@ La tercera máquina de estados solo puede salir de RESPOSO ante el evento siTiti
 
 En la siguiente figura se puede ver el diagrama de estados de este ejemplo:
 
-![Stetechart del Toggle](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/f897da6e268a53f12ab5f560db75fdd0fcc3e73c/Statechart%201%20-%20Toggle/1_toggle/Statechart_toogle.png)
+![Stetechart del proyecto nuestro](https://github.com/aguStrus/TP1---Sistemas-Embebidos/blob/main/Statechart%206%20-%20Proyecto%20Nuestro/StatechartJoel.png)
 
 Esta máquina tiene 3 estados, de los cuales 2 son estados anidados. Cuando se inicia la máquina de estados entra al estado START, del que sale automáticamente por una de las 2 salidas. La salida depende de un switch externo que se simula en este caso con los eventos para cada una de las 2 posiciones del switch. Se puede pasar al estado CONFIGURANDO o al estado ANDANDO. Cuando se entra al estado anidado CONFIGURANDO primero entra el estado LEER BOTONES, del que sale cuando termina de leer y se produce el evento evFinLeerBotones, y pasa al estado CAMBIAR CONSTANTES. Cuando termina de cambiar constantes se dispara el evento ev FinCambiarConstantes y pasa al estado ACTUALIZAR DISPLAY. Luego de 500ms vuelve al LEER BOTONES y comienza el ciclo de nuevo.
 
