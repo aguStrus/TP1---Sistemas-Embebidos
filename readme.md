@@ -6,6 +6,8 @@ Villacampa Horta Augusto - 102602
 
 Strusberg Agustin Javier - 102809
 
+Joel Gottfried - 102498
+
 ## **Instalación y pasos previos**
 
 En este trabajo se pretende aprender sobre la utilización de diagramas de estados y su codificación con la extensión de Yakindu.
